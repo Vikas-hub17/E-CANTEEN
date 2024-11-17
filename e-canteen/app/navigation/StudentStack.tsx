@@ -1,17 +1,23 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import BrowseMenuScreen from '../screens/Student/BrowseMenuScreen';
 import OrderTrackingScreen from '../screens/Student/OrderTrackingScreen';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
-const StudentStack = () => {
+export default function StudentStack() {
   return (
     <Stack.Navigator initialRouteName="BrowseMenu">
-      <Stack.Screen name="BrowseMenu" component={BrowseMenuScreen} />
-      <Stack.Screen name="OrderTracking" component={OrderTrackingScreen} />
+      <Stack.Screen
+        name="BrowseMenu"
+        component={BrowseMenuScreen}
+        options={{ title: 'Browse Menu' }}
+      />
+      <Stack.Screen
+        name="OrderTracking"
+        component={OrderTrackingScreen}
+        options={{ title: 'Track Your Order' }}
+      />
     </Stack.Navigator>
   );
-};
-
-export default StudentStack;
+}
