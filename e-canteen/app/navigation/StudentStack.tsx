@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import BrowseMenuScreen from '../screens/Student/BrowseMenuScreen';
-import OrderTrackingScreen from '../screens/Student/OrderTrackingScreen';
+import OrderTrackingScreen from '../screens/Student/OrdersHistoryScreen';
 
 const Stack = createStackNavigator();
 
