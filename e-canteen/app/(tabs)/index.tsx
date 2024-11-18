@@ -1,6 +1,13 @@
 import React from 'react';
-import StudentStack from '../navigation/StudentStack'; // Update the path if needed
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from '../../navigation/AppNavigator';
 
-export default function App() {
-  return <StudentStack />;
-}
+const App: React.FC = () => {
+  return (
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
+  );
+};
+
+export default App;
