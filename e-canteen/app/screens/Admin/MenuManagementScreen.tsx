@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { View, FlatList, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { TabParamList } from '../../../navigation/AppNavigator';
 import { MenuItem, menuItems } from '../../../data/mockData';
 
-const MenuManagementScreen: React.FC = () => {
+type Props = BottomTabScreenProps<TabParamList, 'MenuManagement'>;
+
+const MenuManagementScreen: React.FC<Props> = ({ navigation, route }) => {
   const [menu, setMenu] = useState<MenuItem[]>(menuItems);
   const [newItem, setNewItem] = useState<{ name: string; price: string }>({ name: '', price: '' });
 
@@ -44,7 +48,7 @@ const MenuManagementScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 16 },
+  container: { padding: 16, flex: 1 },
   item: { padding: 8, borderBottomWidth: 1, borderBottomColor: '#ccc' },
   input: { marginBottom: 8, borderWidth: 1, borderColor: '#ccc', padding: 8 },
 });

@@ -2,7 +2,10 @@ import React, { useState, useContext } from 'react';
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AppContext } from '../../../contexts/AppContext';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { TabParamList } from '../../../navigation/AppNavigator';
 
+type Props = BottomTabScreenProps<TabParamList, 'OrderStatus'>;
 // Define the types for a menu item
 type MenuItem = {
   id: string;
