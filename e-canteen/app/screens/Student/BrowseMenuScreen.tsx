@@ -1,5 +1,23 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+type StudentStackParamList = {
+  BrowseMenu: undefined;
+  OrderTracking: undefined; // Assuming this screen exists for order tracking
+};
+
+type BrowseMenuScreenProps = NativeStackScreenProps<
+  StudentStackParamList,
+  'BrowseMenu'
+>;
 
 const mockMenu = [
   { id: '1', name: 'Pizza', price: '$10' },
@@ -7,13 +25,19 @@ const mockMenu = [
   { id: '3', name: 'Pasta', price: '$8' },
 ];
 
-export default function BrowseMenuScreen({ navigation }) {
-  const renderItem = ({ item }) => (
+const BrowseMenuScreen: React.FC<BrowseMenuScreenProps> = ({ navigation }) => {
+  const handleOrderPress = (itemName: string) => {
+    Alert.alert('Order Placed', `You have ordered: ${itemName}`);
+  };
+
+  const renderItem = ({ item }: { item: typeof mockMenu[number] }) => (
     <View style={styles.menuItem}>
-      <Text style={styles.menuText}>{item.name} - {item.price}</Text>
+      <Text style={styles.menuText}>
+        {item.name} - {item.price}
+      </Text>
       <TouchableOpacity
         style={styles.orderButton}
-        onPress={() => alert(`Ordered: ${item.name}`)}
+        onPress={() => handleOrderPress(item.name)}
       >
         <Text style={styles.orderButtonText}>Order</Text>
       </TouchableOpacity>
@@ -35,7 +59,7 @@ export default function BrowseMenuScreen({ navigation }) {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -76,3 +100,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default BrowseMenuScreen;

@@ -1,11 +1,18 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import BrowseMenuScreen from '../screens/Student/BrowseMenuScreen';
-import OrderTrackingScreen from '../screens/Student/OrdersHistoryScreen';
+import OrdersHistoryScreen from '../screens/Student/OrdersHistoryScreen'; // Corrected the import to match the name
 
-const Stack = createStackNavigator();
+// Define navigation parameters for the stack
+type StudentStackParamList = {
+  BrowseMenu: undefined;
+  OrderTracking: undefined;
+};
 
-export default function StudentStack() {
+// Create a stack navigator with proper typing
+const Stack = createStackNavigator<StudentStackParamList>();
+
+const StudentStack: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="BrowseMenu">
       <Stack.Screen
@@ -15,9 +22,11 @@ export default function StudentStack() {
       />
       <Stack.Screen
         name="OrderTracking"
-        component={OrderTrackingScreen}
+        component={OrdersHistoryScreen} // Corrected the component name
         options={{ title: 'Track Your Order' }}
       />
     </Stack.Navigator>
   );
-}
+};
+
+export default StudentStack;
